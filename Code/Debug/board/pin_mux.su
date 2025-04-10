@@ -1,0 +1,5 @@
+D:\Downloads\frdmk22f_NXPCup\drivers/fsl_clock.h:627:20:CLOCK_EnableClock	24	static
+D:\Downloads\frdmk22f_NXPCup\drivers/fsl_port.h:459:20:PORT_SetPinMux	24	static
+D:\Downloads\frdmk22f_NXPCup\drivers/fsl_dmamux.h:110:20:DMAMUX_SetSource	24	static
+../board/pin_mux.c:31:6:BOARD_InitBootPins	8	static
+../board/pin_mux.c:67:6:BOARD_InitPins	8	static
