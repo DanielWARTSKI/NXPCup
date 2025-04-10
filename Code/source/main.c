@@ -105,13 +105,13 @@
 #define DEMO_ADC16_USER_CHANNEL  8U
 
 // Seuils ajustés pour correspondre à la nouvelle logique
-/*#define THRESHOLD_BLACK 1000 // Seuil pour la détection du noir
+#define THRESHOLD_BLACK 2500 // Seuil pour la détection du noir
 #define THRESHOLD_WHITE 1000 // Seuil pour la détection du blanc
 #define SEQUENCE_LENGTH 8
-//#define PIXEL_COUNT 128
+#define PIXEL_COUNT 128
 
 #define ALPHA 0.8 //Facteur filtrage
-*/
+
 /*******************************************************************************
  * Prototypes
  ******************************************************************************/
@@ -168,12 +168,6 @@ volatile bool waitForEcho = false;
 volatile bool increaseTimer = false;
 
 
-const int PIXEL_COUNT = 128;
-const int THRESHOLD_BLACK = 2500; // Seuil pour la détection du noir
-const int THRESHOLD_WHITE = 1000; // Seuil pour la détection du blanc
-const int SEQUENCE_LENGTH = 8;
-
-const int ALPHA = 0.8; //Facteur filtrage
 
 
 float kp = 1.5;//0.1/1/10/100
@@ -235,25 +229,23 @@ void turn(int erreur){
 	} else if (integralError < -maxIntegralError) {
 	    integralError = -maxIntegralError;
 	}
+	angle = kp * erreur + ki * integralError + kd * derivativeError;
+	updatedDutycycleTurn = ((angle - angle_min) / (angle_max - angle_min)) * (duty_max - duty_min) + duty_min;
 	if(turnLeft){
-		angle = kp * erreur + ki * integralError + kd * derivativeError;
 		//PRINTF("angle_left : %i\r\n",angle);
-		updatedDutycycleTurn = ((angle - angle_min) / (angle_max - angle_min)) * (duty_max - duty_min) + duty_min;
 		//PRINTF("\r\nValeur en decimal: %u\r\n",updatedDutycycleTurn);
-		PRINTF("left : %i\r\n",updatedDutycycleTurn);
 		if(updatedDutycycleTurn < updatedDutycycleTurnMaxLeft){
 			updatedDutycycleTurn = updatedDutycycleTurnMaxLeft;
 		}
+		PRINTF("LEFT : %i\r\n",updatedDutycycleTurn);
 		ftm2IsrFlag = true;
 	}else if(turnRight){
-		angle = kp * erreur + ki * integralError + kd * derivativeError;
 		//PRINTF("angle_right : %i\r\n",angle);
-		updatedDutycycleTurn = ((angle - angle_min) / (angle_max - angle_min)) * (duty_max - duty_min) + duty_min;
-		PRINTF("left : %i\r\n",updatedDutycycleTurn);
 		//PRINTF("\r\nValeur en decimal: %u\r\n",updatedDutycycleTurn);
 		if(updatedDutycycleTurn > updatedDutycycleTurnMaxRight){
 			updatedDutycycleTurn = updatedDutycycleTurnMaxRight;
 		}
+		PRINTF("RIGHT : %i\r\n",updatedDutycycleTurn);
 		ftm2IsrFlag = true;
 	}else if(middle){
 		updatedDutycycleTurn = 11;

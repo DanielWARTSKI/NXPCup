@@ -6,7 +6,7 @@
  * Generated linker script file for MK22FN512xxx12
  * Created from linkscript.ldt by FMCreateLinkLibraries
  * Using Freemarker v2.3.30
- * MCUXpresso IDE v24.12 [Build 148] [2025-01-10] on 10/04/2025, 1:58:31 p. m.
+ * MCUXpresso IDE v24.12 [Build 148] [2025-01-10] on 10/04/2025, 3:41:23 p. m.
  */
 
 INCLUDE "frdmk22f_ftm_simple_pwm_PWM_Debug_library.ld"
