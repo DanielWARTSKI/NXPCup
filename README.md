@@ -49,3 +49,7 @@ L’objectif : concevoir, programmer et optimiser une voiture autonome capable d
 ❖	Structure du véhicule, châssis fournis par NXP avec guide pour montage.
 
 ❖	Câbles et connecteurs.
+
+## Démonstration:
+
+https://github.com/user-attachments/assets/693506ad-09f4-4fc0-8e98-8b3e419881f9
